@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GATE 2027 – Study Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header id="top">
+    <div>
+      <h1>GATE 2027 – Study Hub</h1>
+      <div class="tagline">Data Science & AI / CSE • Planner • Timer • Checklist</div>
+    </div>
+
+    <div class="mode-switch">
+      <button class="mode-btn active" data-mode="da">DA / AI</button>
+      <button class="mode-btn" data-mode="cse">CSE</button>
+    </div>
+  </header>
+
+  <nav class="tab-bar">
+    <button class="tab-btn active" data-tab="overview">Overview</button>
+    <button class="tab-btn" data-tab="timer">Study Timer</button>
+    <button class="tab-btn" data-tab="checklist">Checklist</button>
+    <button class="tab-btn" data-tab="goal">Target Score Plan</button>
+    <button class="tab-btn" data-tab="timeline">Prep Timeline</button>
+  </nav>
+
+  <main>
+    <!-- Overview -->
+    <section id="overview" class="tab-section active">
+      <h2>Why this hub exists</h2>
+      <p id="overviewIntro">
+        This hub is tuned for GATE DA / AI preparation with a focus on ML, statistics, and core CS fundamentals.
+      </p>
+
+      <div class="two-col">
+        <div class="card">
+          <h3>What you get here</h3>
+          <ul>
+            <li>A running study <span class="highlight">timer + hours tracker</span>.</li>
+            <li>A structured <span class="highlight">topic checklist</span> that you tick as you go.</li>
+            <li>An “easy‑first” <span class="highlight">target score allocation</span> by subject.</li>
+            <li>A flexible <span class="highlight">timeline plan</span> based on your exam year.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>How to use it daily</h3>
+          <ul>
+            <li>Start the timer before each focused session.</li>
+            <li>After study, tick topics in the checklist, not just “hours done”.</li>
+            <li>Use the target score plan once every few weeks to re‑prioritise.</li>
+            <li>Use the timeline tab when feeling lost to reset your roadmap.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Study timer -->
+    <section id="timer" class="tab-section">
+      <h2>Study timer & hours tracker</h2>
+      <p>Track how many hours you are actually putting in and when you might hit your target.</p>
+
+      <div class="timer-wrapper">
+        <div class="card">
+          <div class="timer-label">Current focused session</div>
+          <div id="sessionDisplay" class="timer-display">00:00:00</div>
+
+          <div class="timer-controls">
+            <button id="startPauseBtn" class="btn primary">Start</button>
+            <button id="resetSessionBtn" class="btn">Reset session</button>
+          </div>
+
+          <p class="estimate-note">
+            Only pause when you actually stop focusing; you can reset the session timer if you had a false start.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Your study stats</h3>
+          <div class="stats-grid">
+            <div class="stat-box">
+              <div class="stat-label">Today</div>
+              <div id="todayTotal" class="stat-value">0.0 h</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">All‑time total</div>
+              <div id="allTimeTotal" class="stat-value">0.0 h</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">Average per active day</div>
+              <div id="avgPerDay" class="stat-value">0.0 h/day</div>
+            </div>
+          </div>
+
+          <div class="input-row">
+            <span>Target total hours:</span>
+            <input id="targetHoursInput" type="number" min="100" max="3000" />
+            <button id="saveTargetBtn" class="btn">Save</button>
+          </div>
+
+          <p class="estimate-note">
+            Current target: <span id="targetHoursLabel">850 h</span>.
+          </p>
+
+          <div class="stats-grid">
+            <div class="stat-box">
+              <div class="stat-label">Remaining hours</div>
+              <div id="remainingHours" class="stat-value">0.0 h</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">Estimated days left</div>
+              <div id="daysLeft" class="stat-value">–</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">Approx finish date</div>
+              <div id="finishDate" class="stat-value">–</div>
+            </div>
+          </div>
+
+          <button id="resetAllBtn" class="btn danger" style="margin-top:0.6rem;">
+            Reset all tracked data
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Checklist -->
+    <section id="checklist" class="tab-section">
+      <h2>Syllabus checklist</h2>
+      <p>
+        Tick topics as you complete them. Important or frequently asked areas are underlined in the list.
+      </p>
+
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-label">Topics completed</div>
+          <div class="stat-value">
+            <span id="topicsDone">0</span> / <span id="topicsTotal">0</span>
+          </div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Overall checklist progress</div>
+          <div id="overallProgress" class="stat-value">0%</div>
+        </div>
+      </div>
+
+      <div id="checklistContainer"></div>
+    </section>
+
+    <!-- Goal score planner -->
+    <section id="goal" class="tab-section">
+      <h2>Target score planner</h2>
+      <p>
+        Enter your target marks and get a subject‑wise allocation that favours high‑ROI, easier‑to‑score areas first.
+      </p>
+
+      <div class="card">
+        <div class="input-row">
+          <span>Target marks out of 100:</span>
+          <input id="goalScoreInput" type="number" min="30" max="100" />
+          <button id="goalScoreBtn" class="btn primary">Build plan</button>
+        </div>
+        <p class="estimate-note">
+          Aim slightly above your actual comfort zone, but not unrealistically high.
+        </p>
+      </div>
+
+      <div id="goalPlanContainer"></div>
+    </section>
+
+    <!-- Timeline -->
+    <section id="timeline" class="tab-section">
+      <h2>Prep timeline based on exam year</h2>
+      <p>
+        Choose your GATE exam year and get a rough 2‑3 phase structure. Adjust hours and subjects according to your mode (DA/AI or CSE).
+      </p>
+
+      <div class="card">
+        <div class="input-row">
+          <span>GATE exam year:</span>
+          <input id="timelineYearInput" type="number" min="2026" max="2035" />
+          <button id="timelinePlanBtn" class="btn primary">Generate roadmap</button>
+        </div>
+        <p class="estimate-note">
+          The plan assumes the exam happens in February of the chosen year.
+        </p>
+      </div>
+
+      <div id="timelinePlanCard" class="card" style="display:none;">
+        <h3 id="timelineHeading">Roadmap</h3>
+        <p id="timelineSummary" class="estimate-note"></p>
+        <div id="timelinePhases"></div>
+      </div>
+    </section>
+  </main>
+
+  <button id="backToTop" class="floating-top">
+    ↑ Top
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>

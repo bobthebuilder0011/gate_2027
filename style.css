@@ -1,0 +1,593 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #150734;          /* DA/AI base */
+  color: #FFFFFF;
+  line-height: 1.6;
+}
+
+a { color: #4b9fe1; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: #0f2557;
+  border-bottom: 1px solid #FFFFFF22;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #63bce5;
+}
+
+header .tagline {
+  font-size: 0.85rem;
+  color: #FFFFFFCC;
+}
+
+/* Tabs */
+
+.tab-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0.6rem 1.5rem 0.4rem;
+  border-bottom: 1px solid #FFFFFF22;
+  background: #0f2557;
+}
+
+.tab-btn {
+  border-radius: 999px;
+  border: 1px solid #FFFFFF33;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  background: #150734;
+  color: #FFFFFFB3;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+.tab-btn:hover {
+  background: #3778c2;
+  color: #150734;
+  transform: translateY(-1px);
+}
+
+.tab-btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.tab-btn.active {
+  background: #3778c2;
+  border-color: #3778c2;
+  color: #150734;
+  font-weight: 600;
+}
+
+main {
+  min-height: calc(100vh - 110px);
+}
+
+/* Tab sections with animation */
+
+.tab-section {
+  display: none;
+  padding: 1.5rem;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+}
+
+.tab-section.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* General typography and layout */
+
+section > h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #63bce5;
+}
+
+h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-top: 0.8rem;
+  margin-bottom: 0.4rem;
+  color: #FFFFFF;
+}
+
+p {
+  margin-bottom: 0.5rem;
+  font-size: 0.92rem;
+  color: #FFFFFF;
+}
+
+ul, ol {
+  margin-left: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #FFFFFF;
+}
+
+li { margin-bottom: 0.25rem; }
+
+.two-col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 0.75rem;
+}
+
+/* Cards */
+
+.card {
+  background: #0f2557;
+  border-radius: 0.75rem;
+  border: 1px solid #28559a33;
+  padding: 0.9rem 1rem;
+  margin: 0.4rem 0 0.7rem;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.35);
+  border-color: #3778c266;
+}
+
+/* Chips */
+
+.chip {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.7rem;
+  margin-right: 0.3rem;
+  margin-bottom: 0.3rem;
+  background: #150734;
+  color: #FFFFFFB3;
+  border: 1px solid #28559a66;
+}
+
+.tag-list { margin-top: 0.4rem; }
+
+.highlight { color: #63bce5; font-weight: 600; }
+
+/* Tables */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+}
+
+th, td {
+  border: 1px solid #FFFFFF22;
+  padding: 0.4rem 0.5rem;
+  text-align: left;
+}
+
+th {
+  background: #0f2557;
+  font-weight: 600;
+}
+
+tr:nth-child(even) td { background: #150734; }
+
+/* Stats */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+}
+
+.stat-box {
+  background: #0f2557;
+  border-radius: 0.5rem;
+  border: 1px solid #28559a33;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.8rem;
+}
+
+.stat-label {
+  color: #FFFFFFB3;
+  font-size: 0.75rem;
+  margin-bottom: 0.15rem;
+}
+
+.stat-value {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #FFFFFF;
+}
+
+.estimate-note {
+  font-size: 0.78rem;
+  color: #FFFFFFB3;
+  margin-top: 0.35rem;
+}
+
+/* Buttons */
+
+.btn {
+  border-radius: 999px;
+  border: 1px solid #28559a66;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  background: #150734;
+  color: #FFFFFF;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+.btn.primary {
+  background: #3778c2;
+  border-color: #3778c2;
+  color: #150734;
+  font-weight: 600;
+}
+
+.btn.danger {
+  background: #ff3b3b;
+  border-color: #ff3b3b;
+  color: #FFFFFF;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.35);
+}
+
+.btn:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: none;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Inputs */
+
+.input-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.input-row input {
+  width: 90px;
+  padding: 0.25rem 0.4rem;
+  border-radius: 999px;
+  border: 1px solid #28559a66;
+  background: #150734;
+  color: #FFFFFF;
+  font-size: 0.8rem;
+}
+
+/* Timer */
+
+.timer-wrapper {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.4fr);
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .timer-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+.timer-display {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-align: center;
+  padding: 0.4rem 0;
+  color: #63bce5;
+  transition: transform 0.1s ease;
+}
+
+.timer-display.tick {
+  transform: scale(1.02);
+}
+
+.timer-label {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #FFFFFFCC;
+  margin-bottom: 0.25rem;
+}
+
+.timer-controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Checklist */
+
+.subject-block {
+  margin-top: 0.75rem;
+  border-radius: 0.6rem;
+  border: 1px solid #28559a33;
+  background: #0f2557;
+  overflow: hidden;
+  transition: border-color 0.2s ease, transform 0.15s ease;
+}
+
+.subject-block:hover {
+  border-color: #3778c266;
+  transform: translateY(-1px);
+}
+
+.subject-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.55rem 0.7rem;
+  cursor: pointer;
+}
+
+.subject-title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.subject-progress {
+  font-size: 0.78rem;
+  color: #FFFFFFB3;
+  margin-right: 0.4rem;
+}
+
+.subject-toggle-icon {
+  font-size: 0.8rem;
+  color: #FFFFFFB3;
+}
+
+.subject-body {
+  padding: 0.5rem 0.8rem 0.6rem;
+  border-top: 1px solid #28559a33;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.25s ease, opacity 0.25s ease;
+}
+
+.subject-body.open {
+  opacity: 1;
+  max-height: 600px;
+}
+
+.topic-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  margin-bottom: 0.25rem;
+  font-size: 0.85rem;
+}
+
+.topic-item input[type="checkbox"] {
+  margin-top: 0.15rem;
+  accent-color: #63bce5;
+}
+
+.topic-label {
+  color: #FFFFFF;
+}
+
+.topic-label.important-topic {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: #63bce5;
+  font-weight: 600;
+}
+
+/* Goal planner subjects */
+
+.plan-subject {
+  background: #150734;
+  border-radius: 0.5rem;
+  border: 1px solid #28559a66;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+}
+
+.plan-subject-title {
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+  color: #63bce5;
+}
+
+.plan-subject-meta {
+  font-size: 0.78rem;
+  color: #FFFFFFB3;
+}
+
+/* Back to top */
+
+.floating-top {
+  position: fixed;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  background: #3778c2;
+  color: #150734;
+  font-size: 0.8rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  display: none;
+  z-index: 30;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.floating-top.show {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mode switch */
+
+.mode-switch {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.mode-btn {
+  border-radius: 999px;
+  border: 1px solid #28559a66;
+  padding: 0.25rem 0.7rem;
+  font-size: 0.78rem;
+  cursor: pointer;
+  background: #150734;
+  color: #FFFFFFB3;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+.mode-btn.active {
+  background: #63bce5;
+  color: #150734;
+  border-color: #63bce5;
+  font-weight: 600;
+}
+
+.mode-btn:hover {
+  transform: translateY(-1px);
+}
+
+/* CSE mode palette overrides */
+
+body.cse-mode {
+  background: #540863;
+}
+
+body.cse-mode header {
+  background: #540863;
+}
+
+body.cse-mode header h1 {
+  color: #FFD3D5;
+}
+
+body.cse-mode .tab-bar {
+  background: #540863;
+}
+
+body.cse-mode .card {
+  background: #92487A;
+  border-color: #E49BA633;
+}
+
+body.cse-mode .card:hover {
+  border-color: #E49BA6;
+}
+
+body.cse-mode .tab-btn {
+  background: #540863;
+  border-color: #E49BA633;
+}
+
+body.cse-mode .tab-btn.active,
+body.cse-mode .tab-btn:hover {
+  background: #E49BA6;
+  border-color: #E49BA6;
+  color: #540863;
+}
+
+body.cse-mode section > h2 {
+  color: #FFD3D5;
+}
+
+body.cse-mode .highlight {
+  color: #FFD3D5;
+}
+
+body.cse-mode .stat-box {
+  background: #92487A;
+  border-color: #E49BA633;
+}
+
+body.cse-mode .btn {
+  background: #540863;
+  border-color: #E49BA633;
+}
+
+body.cse-mode .btn.primary {
+  background: #E49BA6;
+  border-color: #E49BA6;
+  color: #540863;
+}
+
+body.cse-mode .timer-display {
+  color: #FFD3D5;
+}
+
+body.cse-mode .subject-block {
+  background: #92487A;
+  border-color: #E49BA633;
+}
+
+body.cse-mode .subject-block:hover {
+  border-color: #FFD3D5;
+}
+
+body.cse-mode .topic-item input[type="checkbox"] {
+  accent-color: #FFD3D5;
+}
+
+body.cse-mode .plan-subject {
+  background: #540863;
+  border-color: #E49BA633;
+}
+
+body.cse-mode .plan-subject-title {
+  color: #FFD3D5;
+}
+
+body.cse-mode .floating-top {
+  background: #E49BA6;
+  color: #540863;
+}
+
+body.cse-mode .mode-btn {
+  background: #540863;
+  border-color: #E49BA633;
+}
+
+body.cse-mode .mode-btn.active {
+  background: #FFD3D5;
+  border-color: #FFD3D5;
+  color: #540863;
+}
