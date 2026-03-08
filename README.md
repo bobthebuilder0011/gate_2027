@@ -1,4 +1,5 @@
-#**GATE 2027 – Study Hub**
+#GATE 2027 – Study Hub
+
 This is a feature-rich, client-side web application designed to streamline preparation for the GATE examination, specifically targeting the Data Science & AI (DA) and Computer Science (CSE) papers. The project leverages a dynamic, mode-aware interface that adjusts its entire curriculum, scoring logic, and color palette based on the user's selected exam track.
 
 **Key Features**
